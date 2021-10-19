@@ -32,6 +32,8 @@ app.use(async (req, res, next) => {
 app.use(process.env.URL_API + "/user", routes.UserRoute);
 app.use(process.env.URL_API + "/resto-shop", routes.RestoShopRoute);
 
+
+
 const dropDatabaseSync = false;
 
 sequelize.sync({ force: dropDatabaseSync }).then(async () => {
