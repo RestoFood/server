@@ -14,7 +14,7 @@ const findAddrByPk = async(req,res)=>{
 
 // ----------------------------
 
-// create new address
+// create new address 
 const createAddr = async(req,res)=>{
     const {addr_id,addr_name, addr_detail, addr_latitude, addr_longitude, addr_user_id} = req.body;
     const result = await req.context.models.address.create({
@@ -28,7 +28,7 @@ const createAddr = async(req,res)=>{
     return res.send(result);
 }
 
-// update address 
+// update address (temp)
 const updateAddr = async(req,res)=>{
     const {addr_name} = req.body;
     const id = req.params.id;
