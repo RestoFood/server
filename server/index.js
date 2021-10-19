@@ -31,6 +31,8 @@ app.use(async (req, res, next) => {
 // call routes
 app.use(process.env.URL_API + "/user", routes.UserRoute);
 app.use(process.env.URL_API + "/resto-shop", routes.RestoShopRoute);
+app.use(process.env.URL_API + "/address", routes.AddressRoute);
+app.use(process.env.URL_API + "/resto-ctgry", routes.RetoCtgryRoute);
 
 
 
