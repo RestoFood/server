@@ -35,6 +35,9 @@ app.use(async (req, res, next) => {
 // call routes
 app.use(process.env.URL_DOMAIN+"/auth",routes.AuthRoute)
 app.use(process.env.URL_API + "/resto-shop", routes.RestoShopRoute);
+app.use(process.env.URL_API + "/restomenu", routes.RestoMenuRoute);
+app.use(process.env.URL_API + "/restoaddon", routes.RestoAddonRoute);
+app.use(process.env.URL_API + "/restoreview", routes.RestoReviewRoute);
 
 const dropDatabaseSync = false;
 
