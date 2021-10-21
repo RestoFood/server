@@ -4,8 +4,12 @@ import cors from "cors";
 import compress from "compression";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
+
+import middleware from "./helpers/middleware";
+
 import models, { sequelize } from "./models/indexModel";
 import routes from "./routes/IndexRoute";
+import authJWT from "./helpers/authJWT";
 
 // declare port
 const port = process.env.PORT || 1337;
@@ -29,8 +33,11 @@ app.use(async (req, res, next) => {
 }); */
 
 // call routes
-app.use(process.env.URL_API + "/user", routes.UserRoute);
+app.use(process.env.URL_DOMAIN+"/auth",routes.AuthRoute)
 app.use(process.env.URL_API + "/resto-shop", routes.RestoShopRoute);
+app.use(process.env.URL_API + "/restomenu", routes.RestoMenuRoute);
+app.use(process.env.URL_API + "/restoaddon", routes.RestoAddonRoute);
+app.use(process.env.URL_API + "/restoreview", routes.RestoReviewRoute);
 
 const dropDatabaseSync = false;
 
