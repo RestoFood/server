@@ -39,6 +39,9 @@ app.use(process.env.URL_API + "/restomenu", routes.RestoMenuRoute);
 app.use(process.env.URL_API + "/restoaddon", routes.RestoAddonRoute);
 app.use(process.env.URL_API + "/restoreview", routes.RestoReviewRoute);
 
+app.use(middleware.handleError);
+app.use(middleware.notFound)
+
 const dropDatabaseSync = false;
 
 sequelize.sync({ force: dropDatabaseSync }).then(async () => {
