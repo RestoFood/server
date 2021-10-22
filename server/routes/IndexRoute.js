@@ -5,6 +5,8 @@ import RestoMenuRoute from "./RestoMenuRoute";
 import MenuTypeRoute from "./MenuTypeRoute";
 import RestoAddonRoute from "./RestoAddonRoute";
 import RestoReviewRoute from "./RestoReviewRoute";
+import RestoCtgryRoute from "./RestoCtgryRoute";
+import AddressRoute from "../controller/AddressRoute";
 
 export default {
   UserRoute,
@@ -14,4 +16,6 @@ export default {
   MenuTypeRoute,
   RestoAddonRoute,
   RestoReviewRoute,
+  RestoCtgryRoute,
+  AddressRoute
 };

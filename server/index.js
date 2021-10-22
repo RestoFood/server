@@ -39,6 +39,9 @@ app.use(process.env.URL_API + "/restomenu", routes.RestoMenuRoute);
 app.use(process.env.URL_API + "/menutype", routes.MenuTypeRoute);
 app.use(process.env.URL_API + "/restoaddon", routes.RestoAddonRoute);
 app.use(process.env.URL_API + "/restoreview", routes.RestoReviewRoute);
+app.use(process.env.URL_API + "/address", routes.AddressRoute);
+app.use(process.env.URL_API + "/restoctgry", routes.RestoCtgryRoute);
+
 
 const dropDatabaseSync = false;
 
