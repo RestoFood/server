@@ -4,14 +4,15 @@ import IndexCtrl from "../controller/IndexCtrl";
 const router = Router();
 
 
-router.get("/",IndexCtrl.RetoCtgryCtrl.findReCaAll);
-router.get("/:id",IndexCtrl.RetoCtgryCtrl.findReCaByPk);
+router.get("/",IndexCtrl.RestoCtgryCtrl.findReCaAll);
+router.get("/:id",IndexCtrl.RestoCtgryCtrl.findReCaByPk);
 
 
-router.post("/",IndexCtrl.RetoCtgryCtrl.createReCa);
+router.post("/",IndexCtrl.RestoCtgryCtrl.createReCa);
 
-router.put("/:id",IndexCtrl.RetoCtgryCtrl.updateReCa);
+router.put("/:id",IndexCtrl.RestoCtgryCtrl.updateReCa);
 
-router.delete("/:id",IndexCtrl.RetoCtgryCtrl.deleteReCa);
+router.delete("/:id",IndexCtrl.RestoCtgryCtrl.deleteReCa);
 
 export default router;
+
