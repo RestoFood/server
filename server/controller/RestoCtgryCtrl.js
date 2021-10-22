@@ -55,13 +55,10 @@ const deleteReCa = async (req, res) => {
             where: {
                 reca_name: id
             }
-        }).then(result => {
-            return res.send(result + " rows deleted.")
-        }).catch(error => {
-            return res.sendStatus(404).send("Data not found.")
         });
+        return res.send(result + " rows deleted.");
     } catch (error) {
-
+        return res.sendStatus(404).send("Data not found.");
     }
 
 
