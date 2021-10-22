@@ -43,6 +43,9 @@ app.use(process.env.URL_API + "/address", routes.AddressRoute);
 app.use(process.env.URL_API + "/restoctgry", routes.RestoCtgryRoute);
 
 
+app.use(middleware.handleError);
+app.use(middleware.notFound)
+
 const dropDatabaseSync = false;
 
 sequelize.sync({ force: dropDatabaseSync }).then(async () => {
