@@ -20,9 +20,6 @@ const findReCaByPk = async (req, res) => {
     }
 }
 
-// ----------------------------
-
-// create new resto_category
 const createReCa = async (req, res) => {
     try {
         const { reca_name, reca_desc } = req.body;
@@ -37,7 +34,6 @@ const createReCa = async (req, res) => {
 
 }
 
-// update resto_category 
 const updateReCa = async (req, res) => {
     try {
         const { reca_desc } = req.body;
@@ -52,7 +48,6 @@ const updateReCa = async (req, res) => {
 
 }
 
-// delete from resto_category 
 const deleteReCa = async (req, res) => {
     try {
         const id = req.params.id;

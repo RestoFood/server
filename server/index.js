@@ -45,6 +45,7 @@ app.use(process.env.URL_API + "/restoctgry", routes.RestoCtgryRoute);
 
 const dropDatabaseSync = false;
 
+
 sequelize.sync({ force: dropDatabaseSync }).then(async () => {
   if (dropDatabaseSync) {
     console.log("Database do not drop table");

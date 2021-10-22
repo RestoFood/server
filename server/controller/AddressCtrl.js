@@ -22,9 +22,6 @@ const findAddrByPk = async (req, res) => {
 
 }
 
-// ----------------------------
-
-// create new address 
 const createAddr = async (req, res) => {
     const { addr_id, addr_name, addr_detail, addr_latitude, addr_longitude, addr_user_id } = req.body;
     try {
@@ -43,7 +40,6 @@ const createAddr = async (req, res) => {
 
 }
 
-// update address (temp)
 const updateAddr = async (req, res) => {
     const { addr_name, addr_user_id } = req.body;
     const id = req.params.id;
@@ -62,7 +58,6 @@ const updateAddr = async (req, res) => {
 
 }
 
-// delete from address 
 const deleteAddr = async (req, res) => {
     const id = req.params.id;
     try {
