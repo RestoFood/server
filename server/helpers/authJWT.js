@@ -80,8 +80,7 @@ function adminStrategy() {
         where: { user_name: username },
       });
       console.log(result);
-      const { user_name, user_id, user_password, user_email, user_roles } =
-        result.dataValues;
+      const { user_name, user_id, user_password, user_email, user_roles } = result.dataValues;
       const compare = await bcrypt.compare(password, user_password);
 
       if (compare)
