@@ -14,3 +14,4 @@ router.put("/:id",IndexCtrl.AddressCtrl.updateAddr);
 router.delete("/:id",IndexCtrl.AddressCtrl.deleteAddr);
 
 export default router;
+
