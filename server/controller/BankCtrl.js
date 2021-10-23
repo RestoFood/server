@@ -47,7 +47,7 @@ const updateBank = async (req, res) => {
 const deleteBank = async (req, res) => {
   const id = req.params.id;
   try {
-    await req.context.models.bank.destroy({
+    const result = await req.context.models.bank.destroy({
       where: { bank_id: id },
     });
     return res.send(result + " row deleted.");

@@ -7,6 +7,9 @@ import RestoAddonRoute from "./RestoAddonRoute";
 import RestoReviewRoute from "./RestoReviewRoute";
 import RestoCtgryRoute from "./RestoCtgryRoute";
 import AddressRoute from "./AddressRoute";
+import BankAccountRoute from "./BankAccountRoute";
+import AccountPaymentRoute from "./AccountPaymentRoute";
+import PaymentTxnRoute from "./PaymentTxnRoute"
 
 import BankRoute from "./BankRoute";
 
@@ -21,6 +24,9 @@ export default {
   RestoCtgryRoute,
   AddressRoute,
   BankRoute,
+  BankAccountRoute,
+  AccountPaymentRoute,
+  PaymentTxnRoute
 };
 
 

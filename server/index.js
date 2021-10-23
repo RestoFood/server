@@ -44,6 +44,9 @@ app.use(process.env.URL_API + "/restoctgry", routes.RestoCtgryRoute);
 
 //payment
 app.use(process.env.URL_API + "/bank", routes.BankRoute);
+app.use(process.env.URL_API + "/bankacc", routes.BankAccountRoute);
+app.use(process.env.URL_API + "/accpay", routes.AccountPaymentRoute)
+app.use(process.env.URL_API + "/payt", routes.PaymentTxnRoute);
 
 app.use(middleware.handleError);
 app.use(middleware.notFound);
