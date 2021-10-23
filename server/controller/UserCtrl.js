@@ -6,8 +6,8 @@ const findAllUser = async (req, res) => {
   return res.send(result);
 };
 
-const signup = async (req, res) => {
-  const { username, email, user_password, user_handphone, user_roles } =
+const signup = async (req, res, next) => {
+  const { username, email, user_password, user_handphone, user_roles, pin } =
     req.body;
 
   let hashPassword = user_password;
@@ -21,8 +21,11 @@ const signup = async (req, res) => {
       user_handphone: user_handphone,
       user_roles: user_roles,
     });
-    const { user_name, user_email } = result.dataValues;
-    return res.send({ user_name, user_email });
+    /* const { user_name, user_email } = result.dataValues;
+    return res.send({ user_name, user_email }); */
+    req.pin = pin;
+    req.user = result.dataValues;
+    return next();
   } catch (error) {
     return res.sendStatus(404).send(error);
   }
