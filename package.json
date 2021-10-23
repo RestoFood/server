@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon --exec babel-node ./server/index.js",
     "test": "jest",
-    "reverse:db": "sequelize-auto -o ./schemas -d restofood-db -h localhost -u postgres -p 5432 -x 1234 -e postgres"
+    "reverse:db": "sequelize-auto -o ./schemas -d restofood-db -h localhost -u postgres -p 5432 -x 123456 -e postgres"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.13",

@@ -34,6 +34,7 @@ app.use(async (req, res, next) => {
 
 // call routes
 app.use(process.env.URL_DOMAIN + "/auth", routes.AuthRoute);
+app.use(process.env.URL_API + "/user", routes.UserRoute);
 app.use(process.env.URL_API + "/resto-shop", routes.RestoShopRoute);
 app.use(process.env.URL_API + "/restomenu", routes.RestoMenuRoute);
 app.use(process.env.URL_API + "/menutype", routes.MenuTypeRoute);
@@ -42,6 +43,9 @@ app.use(process.env.URL_API + "/restoreview", routes.RestoReviewRoute);
 app.use(process.env.URL_API + "/address", routes.AddressRoute);
 app.use(process.env.URL_API + "/restoctgry", routes.RestoCtgryRoute);
 
+//cart
+app.use(process.env.URL_API + "/cart", routes.CartRoute);
+
 //payment
 app.use(process.env.URL_API + "/bank", routes.BankRoute);
 
@@ -49,7 +53,6 @@ app.use(middleware.handleError);
 app.use(middleware.notFound);
 
 const dropDatabaseSync = false;
-
 
 sequelize.sync({ force: dropDatabaseSync }).then(async () => {
   if (dropDatabaseSync) {

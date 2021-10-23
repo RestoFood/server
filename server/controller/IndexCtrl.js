@@ -7,10 +7,12 @@ import RestoReviewCtrl from "./RestoReviewCtrl";
 import MenuTypeCtrl from "./MenuTypeCtrl";
 import AddressCtrl from "./AddressCtrl";
 import RestoCtgryCtrl from "./RestoCtgryCtrl";
+import CartCtrl from "./CartCtrl";
 
 export default {
   UserCtrl,
   BankCtrl,
+  CartCtrl,
   RestoShopCtrl,
   RestoMenuCtrl,
   MenuTypeCtrl,
@@ -19,6 +21,3 @@ export default {
   RestoCtgryCtrl,
   AddressCtrl,
 };
-
-
-

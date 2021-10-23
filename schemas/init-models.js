@@ -3,6 +3,7 @@ var _account_payment = require("./account_payment");
 var _address = require("./address");
 var _bank = require("./bank");
 var _bank_account = require("./bank_account");
+var _cart_line_items = require("./cart_line_items");
 var _carts = require("./carts");
 var _menu_type = require("./menu_type");
 var _order_menu = require("./order_menu");
@@ -19,6 +20,7 @@ function initModels(sequelize) {
   var address = _address(sequelize, DataTypes);
   var bank = _bank(sequelize, DataTypes);
   var bank_account = _bank_account(sequelize, DataTypes);
+  var cart_line_items = _cart_line_items(sequelize, DataTypes);
   var carts = _carts(sequelize, DataTypes);
   var menu_type = _menu_type(sequelize, DataTypes);
   var order_menu = _order_menu(sequelize, DataTypes);
@@ -36,12 +38,20 @@ function initModels(sequelize) {
   bank.hasMany(bank_account, { as: "bank_accounts", foreignKey: "baac_bank_id"});
   payment_transaction.belongsTo(bank_account, { as: "payt_baac_acc_bank_bank_account", foreignKey: "payt_baac_acc_bank"});
   bank_account.hasMany(payment_transaction, { as: "payment_transactions", foreignKey: "payt_baac_acc_bank"});
+  cart_line_items.belongsTo(carts, { as: "clit_cart", foreignKey: "clit_cart_id"});
+  carts.hasMany(cart_line_items, { as: "cart_line_items", foreignKey: "clit_cart_id"});
   resto_menu.belongsTo(menu_type, { as: "reme_mety_name_menu_type", foreignKey: "reme_mety_name"});
   menu_type.hasMany(resto_menu, { as: "resto_menus", foreignKey: "reme_mety_name"});
+  cart_line_items.belongsTo(order_menu, { as: "clit_order_name_order_menu", foreignKey: "clit_order_name"});
+  order_menu.hasMany(cart_line_items, { as: "cart_line_items", foreignKey: "clit_order_name"});
   payment_transaction.belongsTo(order_menu, { as: "payt_order_number_order_menu", foreignKey: "payt_order_number"});
   order_menu.hasMany(payment_transaction, { as: "payment_transactions", foreignKey: "payt_order_number"});
+  cart_line_items.belongsTo(resto_addon, { as: "clit_redon", foreignKey: "clit_redon_id"});
+  resto_addon.hasMany(cart_line_items, { as: "cart_line_items", foreignKey: "clit_redon_id"});
   resto_shop.belongsTo(resto_category, { as: "reto_resto_type_resto_category", foreignKey: "reto_resto_type"});
   resto_category.hasMany(resto_shop, { as: "resto_shops", foreignKey: "reto_resto_type"});
+  cart_line_items.belongsTo(resto_menu, { as: "clit_reme", foreignKey: "clit_reme_id"});
+  resto_menu.hasMany(cart_line_items, { as: "cart_line_items", foreignKey: "clit_reme_id"});
   resto_addon.belongsTo(resto_menu, { as: "redon_reme", foreignKey: "redon_reme_id"});
   resto_menu.hasMany(resto_addon, { as: "resto_addons", foreignKey: "redon_reme_id"});
   carts.belongsTo(resto_shop, { as: "cart_reto", foreignKey: "cart_reto_id"});
@@ -70,6 +80,7 @@ function initModels(sequelize) {
     address,
     bank,
     bank_account,
+    cart_line_items,
     carts,
     menu_type,
     order_menu,

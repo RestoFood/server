@@ -9,6 +9,7 @@ import RestoCtgryRoute from "./RestoCtgryRoute";
 import AddressRoute from "./AddressRoute";
 
 import BankRoute from "./BankRoute";
+import CartRoute from "./CartRoute";
 
 export default {
   UserRoute,
@@ -21,7 +22,5 @@ export default {
   RestoCtgryRoute,
   AddressRoute,
   BankRoute,
+  CartRoute,
 };
-
-
-
