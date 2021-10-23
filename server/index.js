@@ -50,6 +50,7 @@ app.use(middleware.notFound);
 
 const dropDatabaseSync = false;
 
+
 sequelize.sync({ force: dropDatabaseSync }).then(async () => {
   if (dropDatabaseSync) {
     console.log("Database do not drop table");
