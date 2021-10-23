@@ -20,9 +20,6 @@ const findReCaByPk = async (req, res) => {
     }
 }
 
-// ----------------------------
-
-// create new resto_category
 const createReCa = async (req, res) => {
     try {
         const { reca_name, reca_desc } = req.body;
@@ -37,12 +34,11 @@ const createReCa = async (req, res) => {
 
 }
 
-// update resto_category 
 const updateReCa = async (req, res) => {
     try {
         const { reca_desc } = req.body;
         const result = await req.context.models.resto_category.update(
-            { reca_name: reca_name, reca_desc: reca_desc },
+            { reca_desc: reca_desc },
             { returning: true, where: { reca_name: req.params.id } }
         );
         return res.send(result);
@@ -52,7 +48,6 @@ const updateReCa = async (req, res) => {
 
 }
 
-// delete from resto_category 
 const deleteReCa = async (req, res) => {
     try {
         const id = req.params.id;
@@ -60,13 +55,10 @@ const deleteReCa = async (req, res) => {
             where: {
                 reca_name: id
             }
-        }).then(result => {
-            return res.send(result + " rows deleted.")
-        }).catch(error => {
-            return res.sendStatus(404).send("Data not found.")
         });
+        return res.send(result + " rows deleted.");
     } catch (error) {
-
+        return res.sendStatus(404).send("Data not found.");
     }
 
 
