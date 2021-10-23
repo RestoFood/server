@@ -38,7 +38,7 @@ const updateReCa = async (req, res) => {
     try {
         const { reca_desc } = req.body;
         const result = await req.context.models.resto_category.update(
-            { reca_name: reca_name, reca_desc: reca_desc },
+            { reca_desc: reca_desc },
             { returning: true, where: { reca_name: req.params.id } }
         );
         return res.send(result);

@@ -23,10 +23,10 @@ const findAddrByPk = async (req, res) => {
 }
 
 const createAddr = async (req, res) => {
-    const { addr_id, addr_name, addr_detail, addr_latitude, addr_longitude, addr_user_id } = req.body;
+    const { addr_name, addr_detail, addr_latitude, addr_longitude, addr_user_id } = req.body;
     try {
         const result = await req.context.models.address.create({
-            addr_id: addr_id,
+            
             addr_name: addr_name,
             addr_detail: addr_detail,
             addr_latitude: addr_latitude,
@@ -40,23 +40,7 @@ const createAddr = async (req, res) => {
 
 }
 
-const updateAddr = async (req, res) => {
-    const { addr_name, addr_user_id } = req.body;
-    const id = req.params.id;
-    try {
-        const result = await req.context.models.address.update(
-            {
-                addr_name: addr_name,
-                addr_user_id: addr_user_id
-            },
-            { returning: true, where: { addr_id: id } }
-        );
-        return res.send(result);
-    } catch (error) {
-        return res.send(error);
-    }
 
-}
 
 const deleteAddr = async (req, res) => {
     const id = req.params.id;
