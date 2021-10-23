@@ -57,6 +57,5 @@ export default {
     findAddrAll,
     findAddrByPk,
     createAddr,
-    updateAddr,
     deleteAddr
 }
