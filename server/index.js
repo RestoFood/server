@@ -42,9 +42,11 @@ app.use(process.env.URL_API + "/restoreview", routes.RestoReviewRoute);
 app.use(process.env.URL_API + "/address", routes.AddressRoute);
 app.use(process.env.URL_API + "/restoctgry", routes.RestoCtgryRoute);
 
+//payment
+app.use(process.env.URL_API + "/bank", routes.BankRoute);
 
 app.use(middleware.handleError);
-app.use(middleware.notFound)
+app.use(middleware.notFound);
 
 const dropDatabaseSync = false;
 

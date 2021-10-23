@@ -17,6 +17,7 @@ module.exports = {
   login: login,
   ensureAdmin: ensureAdmin,
   ensureSeller: ensureSeller,
+  ensureUser: ensureUser,
 };
 
 async function login(req, res, next) {
@@ -44,7 +45,7 @@ async function ensureSeller(req, res, next) {
   const payload = await verify(jwtString);
   if (payload.username) {
     req.user = payload;
-    if (req.user.roleType === "Seller") req.isSeller = true;
+    if (req.user.roleType === "seller") req.isSeller = true;
     return next();
   }
 
@@ -57,6 +58,15 @@ async function ensureAdmin(req, res, next) {
   const jwtString = req.headers.authorization || req.cookies.jwt;
   const payload = await verify(jwtString);
   if (payload.username === "admin") return next();
+  const err = new Error("Unauthorized");
+  err.statusCode = 401;
+  next(err);
+}
+
+async function ensureUser(req, res, next) {
+  const jwtString = req.headers.authorization || req.cookies.jwt;
+  const payload = await verify(jwtString);
+  if (payload.username === "user") return next();
   const err = new Error("Unauthorized");
   err.statusCode = 401;
   next(err);
@@ -80,7 +90,8 @@ function adminStrategy() {
         where: { user_name: username },
       });
       console.log(result);
-      const { user_name, user_id, user_password, user_email, user_roles } = result.dataValues;
+      const { user_name, user_id, user_password, user_email, user_roles } =
+        result.dataValues;
       const compare = await bcrypt.compare(password, user_password);
 
       if (compare)
