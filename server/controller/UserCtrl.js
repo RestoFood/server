@@ -21,8 +21,7 @@ const signup = async (req, res, next) => {
       user_handphone: user_handphone,
       user_roles: user_roles,
     });
-    /* const { user_name, user_email } = result.dataValues;
-    return res.send({ user_name, user_email }); */
+
     req.pin = pin;
     req.user = result.dataValues;
     return next();

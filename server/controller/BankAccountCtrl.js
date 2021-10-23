@@ -1,5 +1,3 @@
-import { sequelize } from "../models/indexModel";
-
 const findAllBaac = async (req, res) => {
   try {
     const result = await req.context.models.bank_account.findAll();
@@ -38,8 +36,6 @@ const createBaac = async (req, res) => {
       baac_owner: baac_owner,
       baac_saldo: baac_saldo,
       baac_pin_number: baac_pin_number,
-      baac_start_date: sequelize.literal("current_timestamp"),
-      baac_end_date: sequelize.literal("current_timestamp + interval '4 year'"),
       baac_type: baac_type,
       baac_user_id: baac_user_id,
       baac_bank_id: baac_bank_id,
@@ -66,13 +62,12 @@ const updateBaac = async (req, res) => {
   }
 };
 
-
 const addSaldo = async (req, res) => {
   const { saldo } = req.body;
   try {
     const result = await req.context.models.bank_account.update(
       {
-        baac_saldo: parseFloat(req.baac.baac_saldo) + saldo,
+        baac_saldo: req.baac.baac_saldo + saldo,
       },
       { returning: true, where: { baac_acc_bank: req.baac.baac_acc_bank } }
     );
