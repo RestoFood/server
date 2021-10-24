@@ -10,7 +10,11 @@ router.get("/:id", IndexCtrl.BankAccountCtrl.findBaacByPk);
 router.post("/", IndexCtrl.BankAccountCtrl.createBaac);
 // put
 router.put("/:id", IndexCtrl.BankAccountCtrl.updateBaac);
-router.put("/addsaldo/:id", IndexCtrl.BankAccountCtrl.findBaacByPk,IndexCtrl.BankAccountCtrl.addSaldo);
+router.put(
+  "/addsaldo/:id",
+  IndexCtrl.BankAccountCtrl.findBaacByPk,
+  IndexCtrl.BankAccountCtrl.addSaldo
+);
 // delete
 router.delete("/:id", IndexCtrl.BankAccountCtrl.deleteBaac);
 

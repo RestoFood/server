@@ -1,32 +1,47 @@
+//auth
 import UserRoute from "./UserRoute";
-import RestoShopRoute from "./RestoShopRoute";
+
+//user
 import AuthRoute from "./AuthRoute";
+import AddressRoute from "./AddressRoute";
+
+//resto
+import RestoShopRoute from "./RestoShopRoute";
 import RestoMenuRoute from "./RestoMenuRoute";
 import MenuTypeRoute from "./MenuTypeRoute";
 import RestoAddonRoute from "./RestoAddonRoute";
 import RestoReviewRoute from "./RestoReviewRoute";
 import RestoCtgryRoute from "./RestoCtgryRoute";
-import AddressRoute from "./AddressRoute";
+
+//payment
+import BankRoute from "./BankRoute";
 import BankAccountRoute from "./BankAccountRoute";
 import AccountPaymentRoute from "./AccountPaymentRoute";
 import PaymentTxnRoute from "./PaymentTxnRoute";
 
-import BankRoute from "./BankRoute";
+//cart
 import CartRoute from "./CartRoute";
 
 export default {
-  UserRoute,
-  RestoShopRoute,
+  //user
   AuthRoute,
+  UserRoute,
+  AddressRoute,
+
+  //resto
+  RestoShopRoute,
   RestoMenuRoute,
   MenuTypeRoute,
   RestoAddonRoute,
   RestoReviewRoute,
   RestoCtgryRoute,
-  AddressRoute,
+
+  //payment
   BankRoute,
-  CartRoute,
   BankAccountRoute,
   AccountPaymentRoute,
   PaymentTxnRoute,
+
+  //cart
+  CartRoute,
 };

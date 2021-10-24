@@ -67,7 +67,7 @@ const addSaldo = async (req, res) => {
   try {
     const result = await req.context.models.bank_account.update(
       {
-        baac_saldo: req.baac.baac_saldo + saldo,
+        baac_saldo: parseFloat(req.baac.baac_saldo) + saldo,
       },
       { returning: true, where: { baac_acc_bank: req.baac.baac_acc_bank } }
     );
