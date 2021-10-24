@@ -9,7 +9,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     cart_createdon: {
       type: DataTypes.DATEONLY,
-      allowNull: true
+      allowNull: true,
+      defaultValue: Sequelize.Sequelize.fn('now')
     },
     cart_status: {
       type: DataTypes.STRING(15),
