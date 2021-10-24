@@ -12,16 +12,9 @@ import models from "../models/indexModel";
 passport.use(adminStrategy());
 const authenticate = passport.authenticate("local", { session: false });
 
-module.exports = {
-  authenticate,
-  login: login,
-  ensureAdmin: ensureAdmin,
-  ensureSeller: ensureSeller,
-  ensureUser: ensureUser,
-};
-
 async function login(req, res, next) {
   const token = await sign({
+    userId: req.user.userId,
     username: req.user.username,
     roleType: req.user.roleType,
   });
@@ -41,35 +34,45 @@ async function sign(payload) {
 }
 
 async function ensureSeller(req, res, next) {
-  const jwtString = req.headers.authorization || req.cookies.jwt;
-  const payload = await verify(jwtString);
-  if (payload.username) {
-    req.user = payload;
-    if (req.user.roleType === "seller") req.isSeller = true;
-    return next();
+  // req.cookies.jwt
+  try {
+    const jwtString = req.headers.authorization || "";
+    const payload = await verify(jwtString);
+    if (payload.roleType === "seller") {
+      req.user = payload;
+      return next();
+    }
+  } catch (error) {
+    return res.sendStatus(401);
   }
-
-  const err = new Error("Unauthorized");
-  err.statusCode = 401;
-  next(err);
 }
 
 async function ensureAdmin(req, res, next) {
-  const jwtString = req.headers.authorization || req.cookies.jwt;
-  const payload = await verify(jwtString);
-  if (payload.username === "admin") return next();
-  const err = new Error("Unauthorized");
-  err.statusCode = 401;
-  next(err);
+  // req.cookies.jwt
+  try {
+    const jwtString = req.headers.authorization || "";
+    const payload = await verify(jwtString);
+    if (payload.roleType === "admin") {
+      req.user = payload;
+      return next();
+    }
+  } catch (error) {
+    return res.sendStatus(401);
+  }
 }
 
 async function ensureUser(req, res, next) {
-  const jwtString = req.headers.authorization || req.cookies.jwt;
-  const payload = await verify(jwtString);
-  if (payload.username === "user") return next();
-  const err = new Error("Unauthorized");
-  err.statusCode = 401;
-  next(err);
+  // req.cookies.jwt
+  try {
+    const jwtString = req.headers.authorization || "";
+    const payload = await verify(jwtString);
+    if (payload.roleType === "user") {
+      req.user = payload;
+      return next();
+    }
+  } catch (error) {
+    return res.sendStatus(401);
+  }
 }
 
 async function verify(jwtString = "") {
@@ -108,3 +111,11 @@ function adminStrategy() {
     cb(null, false);
   });
 }
+
+module.exports = {
+  authenticate,
+  login: login,
+  ensureAdmin: ensureAdmin,
+  ensureSeller: ensureSeller,
+  ensureUser: ensureUser,
+};
