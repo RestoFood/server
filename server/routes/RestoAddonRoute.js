@@ -3,13 +3,13 @@ import IndexCtrl from "../controller/IndexCtrl";
 
 const router = Router();
 
-router.get("/",IndexCtrl.RestoAddonCtrl.findAllRedon);
-router.get("/:id",IndexCtrl.RestoAddonCtrl.findRedonById);
+router.get("/", ensureAdmin, IndexCtrl.RestoAddonCtrl.findAllRedon);
+router.get("/:id", ensureAdmin, IndexCtrl.RestoAddonCtrl.findRedonById);
 
-router.post("/",IndexCtrl.RestoAddonCtrl.createRedon);
+router.post("/", ensureSeller, IndexCtrl.RestoAddonCtrl.createRedon);
 
-router.put("/:id",IndexCtrl.RestoAddonCtrl.updateRedon);
+router.put("/:id", ensureSeller, IndexCtrl.RestoAddonCtrl.updateRedon);
 
-router.delete("/:id",IndexCtrl.RestoAddonCtrl.deleteRedon);
+router.delete("/:id", ensureSeller, IndexCtrl.RestoAddonCtrl.deleteRedon);
 
 export default router;

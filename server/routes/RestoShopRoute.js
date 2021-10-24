@@ -3,11 +3,11 @@ import IndexCtrl from "../controller/IndexCtrl";
 
 const router = Router();
 
-router.get("/", IndexCtrl.RestoShopCtrl.getAllShop);
-router.get("/:id", IndexCtrl.RestoShopCtrl.getShopById);
+router.get("/",ensureAdmin,IndexCtrl.RestoShopCtrl.getAllShop);
+router.get("/:id",ensureAdmin, IndexCtrl.RestoShopCtrl.getShopById);
 
-router.post("/", IndexCtrl.RestoShopCtrl.createShop);
-router.put("/:id", IndexCtrl.RestoShopCtrl.updateShop);
-router.delete("/:id", IndexCtrl.RestoShopCtrl.deleteShop);
+router.post("/", ensureSeller, IndexCtrl.RestoShopCtrl.createShop);
+router.put("/:id",ensureSeller, IndexCtrl.RestoShopCtrl.updateShop);
+router.delete("/:id", ensureSeller, IndexCtrl.RestoShopCtrl.deleteShop);
 
 export default router;
