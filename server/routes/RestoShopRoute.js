@@ -1,5 +1,7 @@
 import { Router } from "express";
 import IndexCtrl from "../controller/IndexCtrl";
+import { ensureAdmin, ensureSeller } from "../helpers/authJWT";
+
 
 const router = Router();
 

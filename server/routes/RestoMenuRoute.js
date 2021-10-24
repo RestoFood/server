@@ -1,6 +1,8 @@
 import { Router } from "express";
 import IndexCtrl from "../controller/IndexCtrl";
 import UpDownloadHelper from "../helpers/UpDownloadHelper";
+import { ensureAdmin, ensureSeller } from "../helpers/authJWT";
+
 
 const router = Router();
 
