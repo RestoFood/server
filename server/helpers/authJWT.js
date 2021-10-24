@@ -75,6 +75,20 @@ async function ensureUser(req, res, next) {
   }
 }
 
+async function ensureUserOrSeller(req, res, next) {
+  // req.cookies.jwt
+  try {
+    const jwtString = req.headers.authorization || "";
+    const payload = await verify(jwtString);
+    if (payload.roleType === "user" || payload.roleType === "seller") {
+      req.user = payload;
+      return next();
+    }
+  } catch (error) {
+    return res.sendStatus(401);
+  }
+}
+
 async function verify(jwtString = "") {
   jwtString = jwtString.replace(/^Bearer /i, "");
   try {
@@ -118,4 +132,5 @@ module.exports = {
   ensureAdmin: ensureAdmin,
   ensureSeller: ensureSeller,
   ensureUser: ensureUser,
+  ensureUserOrSeller: ensureUserOrSeller,
 };
