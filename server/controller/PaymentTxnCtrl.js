@@ -18,20 +18,23 @@ const findPaytByPk = async (req, res) => {
   }
 };
 
-const checkPinBank = async (req, res, next) => {
+const checkBank = async (req, res, next) => {
   try {
-    const { accBank, accPay, pinBank } = req.body;
+    const { accBank, accPay, pinBank, amount } = req.body;
     const resultBaac = await req.context.models.bank_account.findByPk(accBank);
 
     if (resultBaac.dataValues.baac_pin_number === pinBank) {
-      const resultAcc = await req.context.models.account_payment.findByPk(
-        accPay
-      );
-      req.acc = resultAcc.dataValues;
-      req.baac = resultBaac.dataValues;
-      return next();
+      if (resultBaac.dataValues.baac_saldo >= amount) {
+        const resultAcc = await req.context.models.account_payment.findByPk(
+          accPay
+        );
+        req.acc = resultAcc.dataValues;
+        req.baac = resultBaac.dataValues;
+        return next();
+      }
+      return res.sendStatus(400)
     }
-    return res.send("pin false");
+    return res.sendStatus(401);
   } catch (error) {
     return res.send(error);
   }
@@ -67,20 +70,23 @@ const topUp = async (req, res) => {
   }
 };
 
-const checkPinAcc = async (req, res, next) => {
+const checkAcc = async (req, res, next) => {
   try {
-    const { accPay, accBank, pinAcc } = req.body;
+    const { accPay, accBank, pinAcc, amount } = req.body;
     const resultAcc = await req.context.models.account_payment.findByPk(accPay);
 
     if (resultAcc.dataValues.acc_pin_number === pinAcc) {
-      const resultBaac = await req.context.models.bank_account.findByPk(
-        accBank
-      );
-      req.baac = resultBaac.dataValues;
-      req.acc = resultAcc.dataValues;
-      return next();
+      if (resultAcc.dataValues.acc_saldo >= amount) {
+        const resultBaac = await req.context.models.bank_account.findByPk(
+          accBank
+        );
+        req.baac = resultBaac.dataValues;
+        req.acc = resultAcc.dataValues;
+        return next();
+      }
+      return res.sendStatus(400)
     }
-    return res.send("pin false");
+    return res.send(401);
   } catch (error) {
     return res.send(error);
   }
@@ -119,8 +125,8 @@ const tarikUang = async (req, res) => {
 export default {
   findAllPayt,
   findPaytByPk,
-  checkPinBank,
-  checkPinAcc,
+  checkBank,
+  checkAcc,
   topUp,
   tarikUang,
 };
