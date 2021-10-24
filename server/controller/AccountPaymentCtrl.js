@@ -27,6 +27,20 @@ const findAllAcc = async (req, res) => {
   }
 };
 
+const findAccountPaymentByUserId = async (req, res) => {
+  const { userId } = req.user;
+  try {
+    const result = await req.context.models.account_payment.findOne({
+      where: { acc_user_id: userId },
+    });
+
+    return res.send(result);
+  } catch (error) {
+    console.error(error);
+    return res.send(error);
+  }
+};
+
 const findAccByPk = async (req, res) => {
   try {
     const result = await req.context.models.account_payment.findByPk(
@@ -58,5 +72,6 @@ export default {
   createAcc,
   findAllAcc,
   findAccByPk,
-  updateAcc
+  findAccountPaymentByUserId,
+  updateAcc,
 };

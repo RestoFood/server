@@ -16,9 +16,22 @@ const findAddrByPk = async (req, res) => {
   }
 };
 
+const findAddrByUserId = async (req, res) => {
+  const { userId } = req.user;
+  try {
+    const result = await req.context.models.address.findAndCountAll({
+      where: { addr_user_id: userId },
+    });
+
+    return res.send(result);
+  } catch (error) {
+    console.error(error);
+    return res.send(error);
+  }
+};
+
 const createAddr = async (req, res) => {
   const { addr_name, addr_detail, addr_latitude, addr_longitude } = req.body;
-
   const { userId } = req.user;
 
   try {
@@ -69,6 +82,7 @@ const deleteAddr = async (req, res) => {
 export default {
   findAddrAll,
   findAddrByPk,
+  findAddrByUserId,
   createAddr,
   updateAddr,
   deleteAddr,

@@ -20,6 +20,20 @@ const findBaacByPk = async (req, res, next) => {
   }
 };
 
+const findBankAccountByUserId = async (req, res) => {
+  const { userId } = req.user;
+  try {
+    const result = await req.context.models.bank_account.findAndCountAll({
+      where: { baac_user_id: userId },
+    });
+
+    return res.send(result);
+  } catch (error) {
+    console.error(error);
+    return res.send(error);
+  }
+};
+
 const createBaac = async (req, res) => {
   const {
     baac_acc_bank,
@@ -92,6 +106,7 @@ const deleteBaac = async (req, res) => {
 export default {
   findAllBaac,
   findBaacByPk,
+  findBankAccountByUserId,
   createBaac,
   updateBaac,
   deleteBaac,

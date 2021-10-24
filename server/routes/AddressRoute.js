@@ -5,6 +5,11 @@ import { ensureAdmin, ensureUserOrSeller } from "../helpers/authJWT";
 const router = Router();
 
 router.get("/", ensureAdmin, IndexCtrl.AddressCtrl.findAddrAll);
+router.get(
+  "/addressuser",
+  ensureUserOrSeller,
+  IndexCtrl.AddressCtrl.findAddrByUserId
+);
 router.get("/:id", ensureAdmin, IndexCtrl.AddressCtrl.findAddrByPk);
 
 router.post("/", ensureUserOrSeller, IndexCtrl.AddressCtrl.createAddr);
