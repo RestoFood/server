@@ -5,6 +5,11 @@ import { ensureAdmin, ensureUserOrSeller } from "../helpers/authJWT";
 const router = Router();
 
 router.get("/", ensureAdmin, IndexCtrl.BankAccountCtrl.findAllBaac);
+router.get(
+  "/getbankaccount",
+  ensureUserOrSeller,
+  IndexCtrl.BankAccountCtrl.findBankAccountByUserId
+);
 router.get("/:id", ensureAdmin, IndexCtrl.BankAccountCtrl.findBaacByPk);
 
 // method post

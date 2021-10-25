@@ -41,9 +41,12 @@ const createBaac = async (req, res) => {
     baac_saldo,
     baac_pin_number,
     baac_type,
-    baac_user_id,
+
     baac_bank_id,
   } = req.body;
+
+  const { userId } = req.user;
+
   try {
     const result = await req.context.models.bank_account.create({
       baac_acc_bank: baac_acc_bank,
@@ -51,7 +54,7 @@ const createBaac = async (req, res) => {
       baac_saldo: baac_saldo,
       baac_pin_number: baac_pin_number,
       baac_type: baac_type,
-      baac_user_id: baac_user_id,
+      baac_user_id: userId,
       baac_bank_id: baac_bank_id,
     });
     return res.send(result);
@@ -63,12 +66,14 @@ const createBaac = async (req, res) => {
 const updateBaac = async (req, res) => {
   const { baac_pin_number } = req.body;
   const id = req.params.id;
+  const { userId } = req.user;
+
   try {
     const result = await req.context.models.bank_account.update(
       {
         baac_pin_number: baac_pin_number,
       },
-      { returning: true, where: { baac_acc_bank: id } }
+      { returning: true, where: { baac_acc_bank: id, baac_user_id: userId } }
     );
     return res.send(result);
   } catch (error) {
