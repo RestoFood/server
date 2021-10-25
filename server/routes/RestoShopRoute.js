@@ -2,10 +2,10 @@ import { Router } from "express";
 import IndexCtrl from "../controller/IndexCtrl";
 import { ensureSeller } from "../helpers/authJWT";
 
-
 const router = Router();
 
 router.get("/", IndexCtrl.RestoShopCtrl.getAllShop);
+router.get("/getshop", ensureSeller, IndexCtrl.RestoShopCtrl.getShopByUserId);
 router.get("/:id", IndexCtrl.RestoShopCtrl.getShopById);
 
 router.post("/", ensureSeller, IndexCtrl.RestoShopCtrl.createShop);

@@ -58,7 +58,7 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     indexes: [
       {
-        name: "cart_line_items_pkey",
+        name: "clit_id_pk",
         unique: true,
         fields: [
           { name: "clit_id" },

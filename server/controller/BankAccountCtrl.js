@@ -41,7 +41,6 @@ const createBaac = async (req, res) => {
     baac_saldo,
     baac_pin_number,
     baac_type,
-
     baac_bank_id,
   } = req.body;
 
@@ -83,12 +82,16 @@ const updateBaac = async (req, res) => {
 
 const addSaldo = async (req, res) => {
   const { saldo } = req.body;
+  const { userId } = req.user;
   try {
     const result = await req.context.models.bank_account.update(
       {
         baac_saldo: parseFloat(req.baac.baac_saldo) + saldo,
       },
-      { returning: true, where: { baac_acc_bank: req.baac.baac_acc_bank } }
+      {
+        returning: true,
+        where: { baac_acc_bank: req.baac.baac_acc_bank, baac_user_id: userId },
+      }
     );
     return res.send(result);
   } catch (error) {
@@ -98,9 +101,10 @@ const addSaldo = async (req, res) => {
 
 const deleteBaac = async (req, res) => {
   const id = req.params.id;
+  const { userId } = req.user;
   try {
     const result = await req.context.models.bank_account.destroy({
-      where: { baac_acc_bank: id },
+      where: { baac_acc_bank: id, baac_user_id: userId },
     });
     return res.send(result + " row deleted.");
   } catch (error) {

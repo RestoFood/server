@@ -55,12 +55,13 @@ const findAccByPk = async (req, res) => {
 const updateAcc = async (req, res) => {
   const { acc_pin_number } = req.body;
   const id = req.params.id;
+  const { userId } = req.user;
   try {
     const result = await req.context.models.account_payment.update(
       {
         acc_pin_number: acc_pin_number,
       },
-      { returning: true, where: { acc_number: id } }
+      { returning: true, where: { acc_number: id, acc_user_id: userId } }
     );
     return res.send(result);
   } catch (error) {
