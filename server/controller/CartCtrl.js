@@ -1,6 +1,5 @@
 const createCart = async (req, retoId, userId) => {
   return await req.context.models.carts.create({
-    cart_createdon: new Date(),
     cart_status: "open",
     cart_reto_id: retoId,
     cart_user_id: userId,

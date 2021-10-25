@@ -9,7 +9,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     order_created: {
       type: DataTypes.DATEONLY,
-      allowNull: true
+      allowNull: true,
+      defaultValue: Sequelize.Sequelize.fn('now')
     },
     order_subtotal: {
       type: DataTypes.DECIMAL,
