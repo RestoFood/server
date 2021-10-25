@@ -1,6 +1,10 @@
 import { Router } from "express";
 import IndexCtrl from "../controller/IndexCtrl";
-import { ensureAdmin, ensureUserOrSeller, ensureUser } from "../helpers/authJWT";
+import {
+  ensureAdmin,
+  ensureUserOrSeller,
+  ensureUser,
+} from "../helpers/authJWT";
 
 const router = Router();
 
@@ -18,6 +22,13 @@ router.post(
   ensureUserOrSeller,
   IndexCtrl.PaymentTxnCtrl.checkAcc,
   IndexCtrl.PaymentTxnCtrl.tarikUang
+);
+
+router.post(
+  "/payorder",
+  ensureUser,
+  IndexCtrl.PaymentTxnCtrl.checkAcc,
+  IndexCtrl.PaymentTxnCtrl.payOrder
 );
 
 export default router;
