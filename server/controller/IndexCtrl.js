@@ -9,6 +9,8 @@ import AddressCtrl from "./AddressCtrl";
 import RestoCtgryCtrl from "./RestoCtgryCtrl";
 
 import CartCtrl from "./CartCtrl";
+import CartLineItemsCtrl from "./CartLineItemsCtrl";
+
 import BankAccountCtrl from "./BankAccountCtrl";
 import AccountPaymentCtrl from "./AccountPaymentCtrl";
 import PaymentTxnCtrl from "./PaymentTxnCtrl";
@@ -17,6 +19,7 @@ export default {
   UserCtrl,
   BankCtrl,
   CartCtrl,
+  CartLineItemsCtrl,
   RestoShopCtrl,
   RestoMenuCtrl,
   MenuTypeCtrl,

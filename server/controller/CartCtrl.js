@@ -102,6 +102,31 @@ const addToCart = async (req, res, next) => {
   }
 };
 
+const findAllCart = async (req, res) => {
+  try {
+    const result = await req.context.models.carts.findAll();
+    return res.send(result);
+  } catch (error) {
+    return res.send(error);
+  }
+};
+
+const findCartByUserId = async (req, res) => {
+  const { userId } = req.user;
+  try {
+    const result = await req.context.models.carts.findAndCountAll({
+      where: { cart_user_id: userId },
+    });
+
+    return res.send(result);
+  } catch (error) {
+    console.error(error);
+    return res.send(error);
+  }
+};
+
 export default {
+  findAllCart,
+  findCartByUserId,
   addToCart,
 };
