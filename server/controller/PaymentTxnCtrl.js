@@ -32,7 +32,7 @@ const checkBank = async (req, res, next) => {
         req.baac = resultBaac.dataValues;
         return next();
       }
-      return res.sendStatus(400)
+      return res.sendStatus(400);
     }
     return res.sendStatus(401);
   } catch (error) {
@@ -84,9 +84,9 @@ const checkAcc = async (req, res, next) => {
         req.acc = resultAcc.dataValues;
         return next();
       }
-      return res.sendStatus(400)
+      return res.sendStatus(400);
     }
-    return res.send(401);
+    return res.sendStatus(401);
   } catch (error) {
     return res.send(error);
   }

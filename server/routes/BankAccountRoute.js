@@ -1,11 +1,11 @@
 import { Router } from "express";
 import IndexCtrl from "../controller/IndexCtrl";
-import { ensureUserOrSeller } from "../helpers/authJWT";
+import { ensureAdmin, ensureUserOrSeller } from "../helpers/authJWT";
 
 const router = Router();
 
-router.get("/", IndexCtrl.BankAccountCtrl.findAllBaac);
-router.get("/:id", IndexCtrl.BankAccountCtrl.findBaacByPk);
+router.get("/", ensureAdmin, IndexCtrl.BankAccountCtrl.findAllBaac);
+router.get("/:id", ensureAdmin, IndexCtrl.BankAccountCtrl.findBaacByPk);
 
 // method post
 router.post("/", ensureUserOrSeller, IndexCtrl.BankAccountCtrl.createBaac);

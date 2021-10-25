@@ -2,11 +2,10 @@ import { Router } from "express";
 import IndexCtrl from "../controller/IndexCtrl";
 import { ensureAdmin } from "../helpers/authJWT";
 
-
 const router = Router();
 
-router.get("/", ensureAdmin, IndexCtrl.RestoCtgryCtrl.findReCaAll);
-router.get("/:id", ensureAdmin, IndexCtrl.RestoCtgryCtrl.findReCaByPk);
+router.get("/", IndexCtrl.RestoCtgryCtrl.findReCaAll);
+router.get("/:id", IndexCtrl.RestoCtgryCtrl.findReCaByPk);
 
 // method post
 router.post("/", ensureAdmin, IndexCtrl.RestoCtgryCtrl.createReCa);
@@ -16,4 +15,3 @@ router.put("/:id", ensureAdmin, IndexCtrl.RestoCtgryCtrl.updateReCa);
 router.delete("/:id", ensureAdmin, IndexCtrl.RestoCtgryCtrl.deleteReCa);
 
 export default router;
-
