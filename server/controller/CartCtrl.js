@@ -39,6 +39,7 @@ const saveLineItems = async (
     clit_reme_id: reme_id,
     clit_redon_id: redon_id,
     clit_qty: qty,
+    clit_status: "open",
     clit_price: reme_price,
     clit_subtotal: qty * reme_price,
     clit_cart_id: cart_id,

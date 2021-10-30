@@ -14,11 +14,13 @@ import CartLineItemsCtrl from "./CartLineItemsCtrl";
 import BankAccountCtrl from "./BankAccountCtrl";
 import AccountPaymentCtrl from "./AccountPaymentCtrl";
 import PaymentTxnCtrl from "./PaymentTxnCtrl";
+import CheckoutCtrl from "./CheckoutCtrl";
 
 export default {
   UserCtrl,
   BankCtrl,
   CartCtrl,
+  CheckoutCtrl,
   CartLineItemsCtrl,
   RestoShopCtrl,
   RestoMenuCtrl,
