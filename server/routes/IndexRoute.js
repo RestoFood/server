@@ -21,6 +21,9 @@ import PaymentTxnRoute from "./PaymentTxnRoute";
 
 //cart
 import CartRoute from "./CartRoute";
+import CartLineItemsRoute from "./CartLineItemsRoute";
+
+import CheckoutRoute from "./CheckoutRoute";
 
 export default {
   //user
@@ -41,7 +44,9 @@ export default {
   BankAccountRoute,
   AccountPaymentRoute,
   PaymentTxnRoute,
+  CheckoutRoute,
 
   //cart
   CartRoute,
+  CartLineItemsRoute,
 };

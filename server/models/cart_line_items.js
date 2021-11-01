@@ -9,6 +9,10 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         primaryKey: true,
       },
+      clit_status: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
       clit_reme_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
