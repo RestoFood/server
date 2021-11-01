@@ -112,6 +112,65 @@ const deleteBaac = async (req, res) => {
   }
 };
 
+const checkPinBank = async (req, res, next) => {
+  try {
+    const { accBank, pinBank } = req.body;
+    const { userId } = req.user;
+    const resultBaac = await req.context.models.bank_account.findByPk(accBank);
+
+    if (!(resultBaac.dataValues.baac_user_id === userId))
+      return res.sendStatus(403);
+    if (!(resultBaac.dataValues.baac_pin_number === pinBank))
+      return res.sendStatus(401);
+
+    req.baac = resultBaac.dataValues;
+    return next();
+  } catch (error) {
+    return res.send(error);
+  }
+};
+
+const checkSaldoBank = async (req, res, next) => {
+  try {
+    const { amount } = req.body;
+    const saldoBaac = parseFloat(req.baac.baac_saldo);
+    if (!(saldoBaac >= amount)) return res.sendStatus(400);
+    return next();
+  } catch (error) {
+    return res.send(error);
+  }
+};
+
+const updateSaldoBank = async (req, res, next) => {
+  try {
+    const { amount, accBank } = req.body;
+
+    if (req.payt.payt_type === "topup") {
+      await req.context.models.bank_account.update(
+        {
+          baac_saldo: parseFloat(req.baac.baac_saldo) - amount,
+        },
+        { returning: true, where: { baac_acc_bank: accBank } }
+      );
+      return res.send(req.payt);
+    }
+
+    if (req.payt.payt_type === "transfer") {
+      await req.context.models.bank_account.update(
+        {
+          baac_saldo: parseFloat(req.baac.baac_saldo) + amount,
+        },
+        { returning: true, where: { baac_acc_bank: accBank } }
+      );
+      return res.send(req.payt);
+    }
+
+    return res.sendStatus(400)
+  } catch (error) {
+    return res.send(error);
+  }
+};
+
 export default {
   findAllBaac,
   findBaacByPk,
@@ -120,4 +179,7 @@ export default {
   updateBaac,
   deleteBaac,
   addSaldo,
+  checkPinBank,
+  checkSaldoBank,
+  updateSaldoBank,
 };
