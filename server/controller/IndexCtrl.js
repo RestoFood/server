@@ -7,14 +7,13 @@ import RestoReviewCtrl from "./RestoReviewCtrl";
 import MenuTypeCtrl from "./MenuTypeCtrl";
 import AddressCtrl from "./AddressCtrl";
 import RestoCtgryCtrl from "./RestoCtgryCtrl";
-
-import CartCtrl from "./CartCtrl";
-import CartLineItemsCtrl from "./CartLineItemsCtrl";
-
 import BankAccountCtrl from "./BankAccountCtrl";
 import AccountPaymentCtrl from "./AccountPaymentCtrl";
 import PaymentTxnCtrl from "./PaymentTxnCtrl";
+import OrderMenuCtrl from "./OrderMenuCtrl";
 import CheckoutCtrl from "./CheckoutCtrl";
+import CartCtrl from "./CartCtrl";
+import CartLineItemsCtrl from "./CartLineItemsCtrl";
 
 export default {
   UserCtrl,
@@ -29,6 +28,7 @@ export default {
   RestoReviewCtrl,
   RestoCtgryCtrl,
   AddressCtrl,
+  OrderMenuCtrl,
   BankAccountCtrl,
   AccountPaymentCtrl,
   PaymentTxnCtrl,

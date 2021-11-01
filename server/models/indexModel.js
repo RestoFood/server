@@ -71,11 +71,9 @@ const initModels = (sequelize) => {
     foreignKey: "payt_baac_acc_bank",
   });
   cart_line_items.belongsTo(carts, {
-    as: "clit_cart",
     foreignKey: "clit_cart_id",
   });
   carts.hasMany(cart_line_items, {
-    as: "cart_line_items",
     foreignKey: "clit_cart_id",
   });
   resto_menu.belongsTo(menu_type, {
@@ -87,11 +85,9 @@ const initModels = (sequelize) => {
     foreignKey: "reme_mety_name",
   });
   cart_line_items.belongsTo(order_menu, {
-    as: "clit_order_name_order_menu",
     foreignKey: "clit_order_name",
   });
   order_menu.hasMany(cart_line_items, {
-    as: "cart_line_items",
     foreignKey: "clit_order_name",
   });
   payment_transaction.belongsTo(order_menu, {
@@ -134,8 +130,8 @@ const initModels = (sequelize) => {
     as: "resto_addons",
     foreignKey: "redon_reme_id",
   });
-  carts.belongsTo(resto_shop, { as: "cart_reto", foreignKey: "cart_reto_id" });
-  resto_shop.hasMany(carts, { as: "carts", foreignKey: "cart_reto_id" });
+  carts.belongsTo(resto_shop, { foreignKey: "cart_reto_id" });
+  resto_shop.hasMany(carts, { foreignKey: "cart_reto_id" });
   resto_menu.belongsTo(resto_shop, {
     as: "reme_reto",
     foreignKey: "reme_reto_id",
@@ -185,8 +181,8 @@ const initModels = (sequelize) => {
     as: "resto_reviews",
     foreignKey: "rere_user_id",
   });
-  resto_shop.belongsTo(users, { as: "reto_user", foreignKey: "reto_user_id" });
-  users.hasMany(resto_shop, { as: "resto_shops", foreignKey: "reto_user_id" });
+  resto_shop.belongsTo(users, { foreignKey: "reto_user_id" });
+  users.hasMany(resto_shop, { foreignKey: "reto_user_id" });
 
   return {
     account_payment,

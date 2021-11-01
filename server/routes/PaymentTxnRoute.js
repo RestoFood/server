@@ -14,21 +14,50 @@ router.get("/:id", ensureUserOrSeller, IndexCtrl.PaymentTxnCtrl.findPaytByPk);
 router.post(
   "/topup",
   ensureUser,
-  IndexCtrl.PaymentTxnCtrl.checkBank,
-  IndexCtrl.PaymentTxnCtrl.topUp
+  IndexCtrl.BankAccountCtrl.checkPinBank,
+  IndexCtrl.BankAccountCtrl.checkSaldoBank,
+  IndexCtrl.PaymentTxnCtrl.jurnalTopup,
+  IndexCtrl.AccountPaymentCtrl.updateSaldoAcc,
+  IndexCtrl.BankAccountCtrl.updateSaldoBank
 );
 router.post(
   "/tarikuang",
   ensureUserOrSeller,
-  IndexCtrl.PaymentTxnCtrl.checkAcc,
-  IndexCtrl.PaymentTxnCtrl.tarikUang
+  IndexCtrl.AccountPaymentCtrl.checkPinAcc,
+  IndexCtrl.AccountPaymentCtrl.checkSaldoAcc,
+  IndexCtrl.PaymentTxnCtrl.jurnalTarikUang,
+  IndexCtrl.AccountPaymentCtrl.updateSaldoAcc,
+  IndexCtrl.BankAccountCtrl.updateSaldoBank
 );
 
 router.post(
   "/payorder",
   ensureUser,
-  IndexCtrl.PaymentTxnCtrl.checkAcc,
-  IndexCtrl.PaymentTxnCtrl.payOrder
+  IndexCtrl.AccountPaymentCtrl.checkPinAcc,
+  IndexCtrl.OrderMenuCtrl.checkOrder,
+  IndexCtrl.AccountPaymentCtrl.checkSaldoAcc,
+  IndexCtrl.PaymentTxnCtrl.jurnalOrder,
+  IndexCtrl.AccountPaymentCtrl.updateSaldoAcc,
+  IndexCtrl.OrderMenuCtrl.updateOrderPayt
 );
+
+router.post(
+  "/cancelorder",
+  ensureUser,
+  IndexCtrl.OrderMenuCtrl.checkOrder,
+  IndexCtrl.PaymentTxnCtrl.jurnalRefund,
+  IndexCtrl.AccountPaymentCtrl.updateSaldoAcc,
+  IndexCtrl.OrderMenuCtrl.updateOrderPayt
+);
+
+router.post(
+  "/closeorder",
+  ensureUser,
+  IndexCtrl.OrderMenuCtrl.checkOrder,
+  IndexCtrl.OrderMenuCtrl.accRestoFromOrder,
+  IndexCtrl.PaymentTxnCtrl.jurnalClose,
+  IndexCtrl.AccountPaymentCtrl.updateSaldoAcc,
+  IndexCtrl.OrderMenuCtrl.updateOrderPayt
+)
 
 export default router;
