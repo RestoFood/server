@@ -21,6 +21,17 @@ const findRemeById = async (req, res) => {
   }
 };
 
+const findRemeByRetoId = async (req, res) => {
+  try {
+    const result = await req.context.models.resto_menu.findAll({
+      where: { reme_reto_id: req.params.id }
+    });
+    return res.send(result);
+  } catch (error) {
+    return res.sendStatus(404).send("no data found.");
+  }
+};
+
 const createReme = async (req, res) => {
   try {
     const singlePart = await UpDownloadHelper.uploadSingleFile(req);
@@ -97,6 +108,7 @@ const deleteReme = async (req, res) => {
 export default {
   findAllReme,
   findRemeById,
+  findRemeByRetoId,
   createReme,
   updateReme,
   deleteReme,

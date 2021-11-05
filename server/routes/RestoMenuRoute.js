@@ -3,10 +3,10 @@ import IndexCtrl from "../controller/IndexCtrl";
 import UpDownloadHelper from "../helpers/UpDownloadHelper";
 import { ensureSeller } from "../helpers/authJWT";
 
-
 const router = Router();
 
 router.get("/", IndexCtrl.RestoMenuCtrl.findAllReme);
+router.get("/reto/:id", IndexCtrl.RestoMenuCtrl.findRemeByRetoId);
 router.get("/:id", IndexCtrl.RestoMenuCtrl.findRemeById);
 router.get("/images/:filename", UpDownloadHelper.showRemeImage);
 
