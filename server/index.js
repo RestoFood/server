@@ -44,9 +44,11 @@ app.use(process.env.URL_API + "/restoaddon", routes.RestoAddonRoute);
 app.use(process.env.URL_API + "/restoreview", routes.RestoReviewRoute);
 
 app.use(process.env.URL_API + "/restoctgry", routes.RestoCtgryRoute);
+app.use(process.env.URL_API + "/checkout", routes.CheckoutRoute);
 
 //cart
 app.use(process.env.URL_API + "/cart", routes.CartRoute);
+app.use(process.env.URL_API + "/cartlineitems", routes.CartLineItemsRoute);
 
 //payment
 app.use(process.env.URL_API + "/bank", routes.BankRoute);
